@@ -1,4 +1,6 @@
 #pragma once
+typedef signed char	int8;
+
 template<int sizeX, int sizeY, int sizeZ, class T>
 class VolumetricData
 {
