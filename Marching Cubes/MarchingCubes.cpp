@@ -1,4 +1,6 @@
 #include "MarchingCubes.h"
+/*
+template class VolumetricData<10, 10, 10, int8>;
 
 template<int sizeX, int sizeY, int sizeZ, class T>
 VolumetricData<sizeX, sizeY, sizeZ, T>::VolumetricData(T data[sizeX][sizeY][sizeZ])
@@ -16,7 +18,7 @@ VolumetricData<sizeX, sizeY, sizeZ, T>::VolumetricData(T data[sizeX][sizeY][size
 }
 
 template<int sizeX, int sizeY, int sizeZ, class T>
-VolumetricData<sizeX, sizeY, sizeZ, T>::VolumetricData(VolumetricData<sizeX, sizeY, sizeZ, T>& volumetricData)
+VolumetricData<sizeX, sizeY, sizeZ, T>::VolumetricData(const VolumetricData<sizeX, sizeY, sizeZ, T>& volumetricData)
 {
 	for (int i = 0; i < sizeX; i++)
 	{
@@ -39,3 +41,4 @@ template<int sizeX, int sizeY, int sizeZ, class T>
 T VolumetricData<sizeX, sizeY, sizeZ, T>::get(int x, int y, int z) {
 	return this->data[x][y][z];
 }
+*/

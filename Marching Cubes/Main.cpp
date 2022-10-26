@@ -1,3 +1,4 @@
+#include <iostream>
 #include "MarchingCubes.h"
 
 template<int sizeX, int sizeY, int sizeZ>VolumetricData<sizeX, sizeY, sizeZ, int8> getVolumetricDataOfACube();
@@ -7,7 +8,7 @@ template<int sizeX, int sizeY>VolumetricData<sizeX, sizeY, 4, int8> getVolumetri
 
 
 void main() {
-	//getVolumetricDataOfACube <10, 10, 10>();
+	auto x = getVolumetricDataOfACube<10, 10, 10>();
 }
 
 template<int sizeX, int sizeY, int sizeZ>
