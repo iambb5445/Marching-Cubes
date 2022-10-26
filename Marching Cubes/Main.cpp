@@ -8,7 +8,8 @@ template<int sizeX, int sizeY>VolumetricData<sizeX, sizeY, 4, int8> getVolumetri
 
 
 void main() {
-	auto x = getVolumetricDataOfACube<10, 10, 10>();
+	auto vData = getVolumetricDataOfACube<10, 10, 10>();
+	auto geo = MarchedGeometry<9, 9, 9>(Vector3D(1, 1, 1), vData);
 }
 
 template<int sizeX, int sizeY, int sizeZ>
