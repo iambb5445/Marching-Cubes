@@ -1,4 +1,4 @@
-#include<iostream>
+#include<fstream>
 #include<vector>
 
 #pragma once
@@ -42,6 +42,8 @@ public:
 	int getSizeY();
 	int getSizeZ();
 	~VolumetricData();
+	static VolumetricData fromFile(const char filename[]);
+	void toFile(const char filename[]);
 };
 
 class MarchedGeometry
@@ -131,6 +133,7 @@ private:
 public:
 	MarchedGeometry(Vector3D cubeScale, VolumetricData<int8>);
 	~MarchedGeometry();
+	void toFile(const char filename[]);
 };
 
 // The following function are not in MarchingCubes.cpp due to linker errors.
@@ -161,13 +164,13 @@ VolumetricData<T>::VolumetricData(const VolumetricData<T>& volumetricData) {
 template<typename T>
 T VolumetricData<T>::get(int x, int y, int z) {
 	if (x < 0 || x >= sizeX) {
-		throw "X dimention out of bound in VolumetricData get function";
+		throw std::runtime_error("X dimention out of bound in VolumetricData get function");
 	}
 	if (y < 0 || y >= sizeY) {
-		throw "Y dimention out of bound in VolumetricData get function";
+		throw std::runtime_error("Y dimention out of bound in VolumetricData get function");
 	}
 	if (z < 0 || z >= sizeZ) {
-		throw "Z dimention out of bound in VolumetricData get function";
+		throw std::runtime_error("Z dimention out of bound in VolumetricData get function");
 	}
 	return data[x * sizeY * sizeZ + y * sizeZ + z];
 }
@@ -190,4 +193,40 @@ int VolumetricData<T>::getSizeY() {
 template<typename T>
 int VolumetricData<T>::getSizeZ() {
 	return sizeZ;
+}
+
+template<typename T>
+VolumetricData<T> VolumetricData<T>::fromFile(const char filename[]) {
+	std::ifstream fin(filename);
+	if (!fin.is_open()) {
+;		throw std::runtime_error("Can't open file");
+	}
+	int sizeX, sizeY, sizeZ;
+	fin >> sizeX >> sizeY >> sizeZ;
+	T* data = (T*)malloc(sizeX*sizeY*sizeZ*sizeof(T));
+	for (int i = 0; i < sizeX * sizeY * sizeZ; i++) {
+		int value;
+		fin >> value;
+		data[i] = (T)value; // TODO proper casting
+	}
+	fin.close();
+	auto ret = VolumetricData<T>(sizeX, sizeY, sizeZ, data);
+	free(data);
+	return ret;
+}
+
+template<typename T>
+void VolumetricData<T>::toFile(const char filename[]) {
+	std::ofstream fout(filename);
+	if (!fout.is_open()) {
+		throw std::runtime_error("Can't open file");
+	}
+	fout << sizeX << " " << sizeY << " " << sizeZ << std::endl;
+	for (int i = 0; i < sizeX * sizeY * sizeZ; i++) {
+		if (i > 0) {
+			fout << " ";
+		}
+		fout << (int)data[i];
+	}
+	fout.close();
 }

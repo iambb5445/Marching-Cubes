@@ -45,8 +45,6 @@ uint32 MarchedGeometry::getCaseIndex(int x, int y, int z)
 	for (int i = 0; i < CORNER_COUNT; i++) {
 		int8 vertexValue = getCornerFieldValue(x, y, z, i);
 		uint32 vertexSign = vertexValue & 0x80;
-		vertexSign;
-		uint32 debug = vertexSign >> (7 - i);
 		value |= vertexSign >> (7 - i);
 	}
 	return value;
@@ -239,6 +237,21 @@ void MarchedGeometry::marchCubes()
 			}
 		}
 	}
+}
+
+void MarchedGeometry::toFile(const char filename[]) {
+	std::ofstream fout(filename);
+	if (!fout.is_open()) {
+		throw std::runtime_error("Can't open file");
+	}
+	fout << sizeX << " " << sizeY << " " << sizeZ << std::endl;
+	for (int i = 0; i < sizeX * sizeY * sizeZ; i++) {
+		if (i > 0) {
+			fout << " ";
+		}
+		fout << (int)data[i];
+	}
+	fout.close();
 }
 
 const uint8 MarchedGeometry::caseIndexToClassIndex[MarchedGeometry::CASE_COUNT] = {

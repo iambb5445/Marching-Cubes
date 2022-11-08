@@ -13,8 +13,9 @@ void main() {
 	// auto vData = getVolumetricDataOfARoundEdgeCube(5, 5, 5);
 	// auto vData = getVolumetricDataOfFlatTerrain(5, 5);
 	// auto vData = getVolumetricDataOfWavedTerrain(5, 5);
-	auto vData = getVolumetricDataOfWavedTerrain(5, 5);
-	auto geo = MarchedGeometry(Vector3D(1, 1, 1), vData);
+	auto vData = VolumetricData<int>::fromFile("test_in.txt");
+	vData.toFile("test_out.txt");
+	// auto geo = MarchedGeometry(Vector3D(1, 1, 1), vData);
 }
 
 int get3DIndex(int x, int y, int z, int sizeX, int sizeY, int sizeZ) {
