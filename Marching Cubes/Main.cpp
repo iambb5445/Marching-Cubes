@@ -9,13 +9,13 @@ VolumetricData<int8> getVolumetricDataOfWavedTerrain(int sizeX, int sizeY);
 
 void main() {
 	// examples of input data:
-	// auto vData = getVolumetricDataOfACube(5, 5, 5);
+	auto vData = getVolumetricDataOfACube(5, 5, 5);
 	// auto vData = getVolumetricDataOfARoundEdgeCube(5, 5, 5);
 	// auto vData = getVolumetricDataOfFlatTerrain(5, 5);
 	// auto vData = getVolumetricDataOfWavedTerrain(5, 5);
-	auto vData = VolumetricData<int>::fromFile("test_in.txt");
-	vData.toFile("test_out.txt");
-	// auto geo = MarchedGeometry(Vector3D(1, 1, 1), vData);
+	// auto vData = VolumetricData<int8>::fromFile("test_in.txt");
+	auto geo = MarchedGeometry(Vector3D(1, 1, 1), vData);
+	geo.toFile("test_out.txt");
 }
 
 int get3DIndex(int x, int y, int z, int sizeX, int sizeY, int sizeZ) {

@@ -244,12 +244,13 @@ void MarchedGeometry::toFile(const char filename[]) {
 	if (!fout.is_open()) {
 		throw std::runtime_error("Can't open file");
 	}
-	fout << sizeX << " " << sizeY << " " << sizeZ << std::endl;
-	for (int i = 0; i < sizeX * sizeY * sizeZ; i++) {
-		if (i > 0) {
-			fout << " ";
-		}
-		fout << (int)data[i];
+	fout << vertexCount << std::endl;
+	for (int i = 0; i < vertexCount; i++) {
+		fout << vertex[i].position.x << " " << vertex[i].position.y << " " << vertex[i].position.z << std::endl;
+	}
+	fout << triangleCount << std::endl;
+	for (int i = 0; i < triangleCount; i++) {
+		fout << triangle[i].index[0] << " " << triangle[i].index[1] << " " << triangle[i].index[2] << std::endl;
 	}
 	fout.close();
 }
