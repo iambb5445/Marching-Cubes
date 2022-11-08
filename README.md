@@ -59,6 +59,7 @@ When marching each cube:
 6. There are two possibilities for `t`:
    1. t is 0(min value) or 256(max value). In this case, the triangle vertex is on the one of the corners. This is important to consider separately from 6.2. to prevent using duplicate vertices for the same point and prevent artifacts.
    2. t is not 0 or 256. In this case, the triangle vertex is on the edge between two vertices. The exact position can be calculated by considering the value of t.
+
 In both cases, the value of edge delta and edge index will be combined to find out if the vertex should already exist or not. If so, we can find the value from one of the neighboring cubes. Otherwise, a new vertex will be added.
 
 7. Finally, we add all the triangles, and check no to add a triangle with the area of zero (all vertices on the same point, which is possible in some cases).
