@@ -4,6 +4,10 @@ This is an implementation of the marching cubes algorithm. Marching cubes is an 
 
 This was implemented as a project for the Game Graphics Course at UCSC, Winter 2022, instructed by Eric Lengyl. I originally implemented this in the provided Game Engine, but I extracted this as an standalone implementation of marching cubes to share on GitHub.
 
+Image source and description of the Transvoxel Algorithm: https://transvoxel.org/Lengyel-VoxelTerrain.pdf
+
+<img width="355" alt="transvoxel" src="https://github.com/iambb5445/Marching-Cubes/assets/25642714/3778302c-e4a5-4c32-8c15-7a4cb3953625">
+
 # How to Use
 
 As mentioned above, the marching cubes algorithm gets a 3D volumetric data as input and generates a mesh. For the input, you can either write your data in the code, as a .txt file, or by using one of the existing examples in `Main.cpp`. Please refer to the `main` function in the `Main.cpp` file for more examples.
@@ -30,7 +34,7 @@ The output will be generated as a `MarchedGeometry` class, which will be written
 
 # Implementation Details
 
-This implementation of the Marching cubes algorithm follows the description of the Foundations of Game Engine Development book by Eric Lengyl.
+This implementation of the Marching cubes algorithm follows the description of the Transvoxel Algorithm in the Foundations of Game Engine Development book by Eric Lengyl.
 
 The idea behind the marching cubes algorithm is as follows:
 
